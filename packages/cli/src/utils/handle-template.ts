@@ -5,6 +5,26 @@ import fs from 'fs-extra';
 import path from 'path';
 import { PluginOptions } from './get-plugin-options';
 
+const gitignore = `
+.DS_Store
+node_modules/
+.npm
+.env
+*.log*
+*.pid
+*.pid.*
+*.report
+.sonarlint
+.idea/
+.eslintcache
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/extensions.json
+dist/
+coverage/
+lib-cov
+`;
+
 // src目录下复制文件
 function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }: { tsx: boolean; less: boolean }) {
   const tempSrc = path.join(templateFilePath, 'pages/index');
@@ -83,4 +103,7 @@ export function handleTemplate({ tsx, less, config = {} }: PluginOptions) {
         fs.copySync(templateFilePath, destFilePath);
     }
   });
+
+  // 写入.gitignore文件
+  fs.writeFileSync(path.join(cwd, '.gitignore'), gitignore);
 }
