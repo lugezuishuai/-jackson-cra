@@ -1,6 +1,6 @@
 {
   "name": "@jacksonhuang/cra-template",
-  "version": "1.0.4",
+  "version": "1.0.5-alpha.0",
   "description": "a template for @jacksonhuang/cra-cli",
   "keywords": [
     "template",
