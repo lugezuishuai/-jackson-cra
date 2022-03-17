@@ -9,5 +9,6 @@ bin
 .*
 *.d.ts
 rollup.config.js
-# 不校验template下的文件
+# 不校验template/demo下的文件
 **/template/**
+**/demo/**

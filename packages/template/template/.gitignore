@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+.npm
+.env
+*.log*
+*.pid
+*.pid.*
+*.report
+.sonarlint
+.idea/
+.eslintcache
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/extensions.json
+dist/
+coverage/
+lib-cov

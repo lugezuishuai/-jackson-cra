@@ -10,7 +10,7 @@
     "@jacksonhuang"
   ],
   "author": "jacksonhuang",
-  "homepage": "",
+  "homepage": "https://github.com/lugezuishuai/cra#readme",
   "license": "ISC",
   "publishConfig": {
     "access": "public"
@@ -26,10 +26,17 @@
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lugezuishuai/cra.git"
+  },
   "scripts": {
     "build": "rm -rf ./lib && tsc",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/lugezuishuai/cra/issues"
   },
   "dependencies": {
     "chalk": "^4.1.2",

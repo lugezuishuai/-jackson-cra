@@ -10,7 +10,7 @@
     "@jacksonhuang"
   ],
   "author": "jacksonhuang",
-  "homepage": "",
+  "homepage": "https://github.com/lugezuishuai/cra#readme",
   "license": "ISC",
   "publishConfig": {
     "access": "public"
@@ -26,13 +26,21 @@
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lugezuishuai/cra.git"
+  },
   "scripts": {
     "build": "rm -rf ./lib && tsc",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
+  "bugs": {
+    "url": "https://github.com/lugezuishuai/cra/issues"
+  },
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
     "@babel/plugin-proposal-decorators": "^7.16.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.16.0",
@@ -43,7 +51,8 @@
     "@babel/preset-react": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^6.1.1",
-    "babel-eslint": "^10.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-import": "^1.13.3",
     "chalk": "^4.1.2",
@@ -54,6 +63,8 @@
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^16.0.0",
     "eslint": "^7.18.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "glob": "^7.2.0",
     "html-webpack-plugin": "^5.5.0",
     "log-symbols": "^5.1.0",

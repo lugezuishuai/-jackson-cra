@@ -5,26 +5,6 @@ import fs from 'fs-extra';
 import path from 'path';
 import { PluginOptions } from './get-plugin-options';
 
-const gitignore = `
-.DS_Store
-node_modules/
-.npm
-.env
-*.log*
-*.pid
-*.pid.*
-*.report
-.sonarlint
-.idea/
-.eslintcache
-.vscode/**/*
-!.vscode/settings.json
-!.vscode/extensions.json
-dist/
-coverage/
-lib-cov
-`;
-
 // src目录下复制文件
 function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }: { tsx: boolean; less: boolean }) {
   const tempSrc = path.join(templateFilePath, 'pages/index');
@@ -80,6 +60,20 @@ export function handleTemplate({ tsx, less, config = {} }: PluginOptions) {
 
         break;
       }
+      case '.eslintrc.js': {
+        if (!tsx) {
+          fs.copySync(templateFilePath, destFilePath);
+        }
+
+        break;
+      }
+      case '.eslintrc-ts.js': {
+        if (tsx) {
+          fs.copySync(templateFilePath, path.join(cwd, '.eslintrc.js'));
+        }
+
+        break;
+      }
       case 'jackson.config.js': {
         const content = `module.exports = ${JSON.stringify(config, null, 2)}`;
         fs.writeFileSync(destFilePath, content);
@@ -89,8 +83,4 @@ export function handleTemplate({ tsx, less, config = {} }: PluginOptions) {
         fs.copySync(templateFilePath, destFilePath);
     }
   });
-
-  // 写入.gitignore文件，不知道为啥fs.readdirSync读取不到.gitignore文件
-  const gitignorePath = path.join(cwd, '.gitignore');
-  fs.writeFileSync(gitignorePath, gitignore);
 }

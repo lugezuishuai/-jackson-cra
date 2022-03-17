@@ -1,0 +1,46 @@
+{
+  "name": "@jacksonhuang/cra-demo",
+  "version": "1.0.5-alpha.0",
+  "description": "demo for @jacksonhuang/cra-cli",
+  "keywords": [
+    "create-react-app",
+    "cli",
+    "demo",
+    "@jacksonhuang"
+  ],
+  "author": "jacksonhuang",
+  "homepage": "https://github.com/lugezuishuai/cra#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/demo.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lugezuishuai/cra.git"
+  },
+  "scripts": {
+    "dev": "jackson-scripts dev",
+    "build": "echo \"no need build\"",
+    "analyse": "jackson-scripts analyse"
+  },
+  "bugs": {
+    "url": "https://github.com/lugezuishuai/cra/issues"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@jacksonhuang/cra-plugin-less": "^1.0.4",
+    "@jacksonhuang/cra-plugin-typescript": "^1.0.4",
+    "@jacksonhuang/cra-scripts": "^1.0.5-alpha.0"
+  }
+}
