@@ -20,6 +20,6 @@ export async function beforeCreate() {
       },
     ]);
 
-    update && execSync(`${MANAGER} update @jackson/cra-cli -g`);
+    update && execSync(`${MANAGER} update @jacksonhuang/cra-cli -g`);
   }
 }

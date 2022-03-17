@@ -1,13 +1,13 @@
 {
-  "name": "@jackson/cra-scripts",
+  "name": "@jacksonhuang/cra-scripts",
   "version": "1.0.3",
-  "description": "node scripts for @jackson/cra-cli",
+  "description": "node scripts for @jacksonhuang/cra-cli",
   "keywords": [
     "create-react-app",
     "scripts",
     "cli",
     "react",
-    "@jackson"
+    "@jacksonhuang"
   ],
   "author": "jacksonhuang",
   "homepage": "",

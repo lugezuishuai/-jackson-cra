@@ -23,7 +23,7 @@
     "lint-staged": "^10.2.7"
   },
   "scripts": {
-    "build": "lerna exec npm run build --scope=\"@jackson/cra-*\""
+    "build": "lerna exec npm run build --scope=\"@jacksonhuang/cra-*\""
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

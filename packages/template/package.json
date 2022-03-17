@@ -1,14 +1,14 @@
 {
-  "name": "@jackson/cra-template",
+  "name": "@jacksonhuang/cra-template",
   "version": "1.0.3",
-  "description": "a template for @jackson/cra-cli",
+  "description": "a template for @jacksonhuang/cra-cli",
   "keywords": [
     "template",
     "create-react-app",
     "cli",
     "react",
     "build",
-    "@jackson"
+    "@jacksonhuang"
   ],
   "author": "jacksonhuang",
   "homepage": "",

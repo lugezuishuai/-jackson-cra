@@ -1,7 +1,7 @@
 {
-  "name": "@jackson/cra-plugin-typescript",
+  "name": "@jacksonhuang/cra-plugin-typescript",
   "version": "1.0.3",
-  "description": "typescript plugin for @jackson/cra-cli",
+  "description": "typescript plugin for @jacksonhuang/cra-cli",
   "keywords": [
     "cli",
     "build",

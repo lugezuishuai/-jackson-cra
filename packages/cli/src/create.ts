@@ -21,11 +21,11 @@ const loading = ora();
 const PLUGIN_ARR: Plugin[] = [
   {
     name: 'Typescript',
-    value: ['tsx', '@jackson/cra-plugin-typescript'],
+    value: ['tsx', '@jacksonhuang/cra-plugin-typescript'],
   },
   {
     name: 'Less',
-    value: ['less', '@jackson/cra-plugin-less'],
+    value: ['less', '@jacksonhuang/cra-plugin-less'],
   },
 ];
 
@@ -91,7 +91,7 @@ export async function create(pkgName: string) {
       plugins: [...devDependencies],
     };
 
-    devDependencies.push('@jackson/cra-scripts');
+    devDependencies.push('@jacksonhuang/cra-scripts');
 
     const promises = [
       ...setVersion(dependencies, pkg, 'dependencies'),

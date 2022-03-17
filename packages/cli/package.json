@@ -1,5 +1,5 @@
 {
-  "name": "@jackson/cra-cli",
+  "name": "@jacksonhuang/cra-cli",
   "version": "1.0.3",
   "description": "user interaction part in cli",
   "keywords": [
@@ -7,7 +7,7 @@
     "cli",
     "build",
     "react",
-    "@jackson"
+    "@jacksonhuang"
   ],
   "author": "jacksonhuang",
   "homepage": "",

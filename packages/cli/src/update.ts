@@ -12,7 +12,7 @@ export function update() {
 
     if (semver.gt(lastVersion, pkg.version)) {
       console.log('ready to upgrade');
-      execSync(`${MANAGER} update @jackson/cra-cli -g`);
+      execSync(`${MANAGER} update @jacksonhuang/cra-cli -g`);
     } else {
       console.log(`This is the latest version of ${pkg.version}`);
     }

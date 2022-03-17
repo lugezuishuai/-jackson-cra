@@ -7,7 +7,7 @@ const rapList = ['我出门总是带着五瓶药水', '手中的卡牌不停切�
 const App = () => {
   return (
     <ul className="container">
-      @jackson/cra-cli 模板
+      @jacksonhuang/cra-cli 模板
       {rapList.map(v => (
         <li key={v}>{v}</li>
       ))}

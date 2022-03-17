@@ -30,7 +30,7 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
 export function handleTemplate({ tsx, less, git, config = {} }: PluginOptions) {
   const cwd = process.cwd(); // 当前项目的路径
   const templatePath = path.join(
-    path.dirname(require.resolve('@jackson/cra-template/package.json', { paths: [cwd] })),
+    path.dirname(require.resolve('@jacksonhuang/cra-template/package.json', { paths: [cwd] })),
     './template'
   ); // 模板文件的目录
   const files = fs.readdirSync(templatePath);

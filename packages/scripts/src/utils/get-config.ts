@@ -23,7 +23,7 @@ function handleExtraConfig({ plugins }: ExtraConfig, mode: ScriptMode) {
     plugins.forEach((plugin) => {
       const pluginFn = require(plugin);
 
-      if (plugin === '@jackson/cra-plugin-less') {
+      if (plugin === '@jacksonhuang/cra-plugin-less') {
         pluginFn(config, mode === ScriptMode.dev);
       } else {
         pluginFn(config);
