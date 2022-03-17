@@ -1,6 +1,6 @@
 {
   "name": "@jackson/cra-scripts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node scripts for @jackson/cra-cli",
   "keywords": [
     "create-react-app",
@@ -45,8 +45,8 @@
     "babel-plugin-import": "^1.13.3",
     "chalk": "^4.1.2",
     "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^3.19.3",
     "commander": "^9.0.0",
+    "core-js": "^3.19.3",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^16.0.0",
