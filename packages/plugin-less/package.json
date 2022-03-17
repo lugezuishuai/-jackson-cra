@@ -1,6 +1,6 @@
 {
   "name": "@jacksonhuang/cra-plugin-less",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "less plugin for @jacksonhuang/cra-cli",
   "keywords": [
     "cli",
