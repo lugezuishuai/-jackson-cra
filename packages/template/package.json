@@ -10,7 +10,7 @@
     "build",
     "@jackson"
   ],
-  "author": "jackson",
+  "author": "jacksonhuang",
   "homepage": "",
   "license": "ISC",
   "publishConfig": {
@@ -27,5 +27,6 @@
     "fs-extra": ">9",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
-  }
+  },
+  "gitHead": "68326784ae43fb125d9aeaf3dca482d280d5220a"
 }

@@ -2,7 +2,7 @@
   "name": "cli",
   "version": "1.0.0",
   "description": "A create-react-app cli",
-  "author": "jackson",
+  "author": "jacksonhuang",
   "private": true,
   "workspaces": {
     "packages": [

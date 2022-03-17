@@ -9,7 +9,7 @@
     "less",
     "plugins"
   ],
-  "author": "jackson",
+  "author": "jacksonhuang",
   "homepage": "",
   "license": "ISC",
   "publishConfig": {
@@ -42,5 +42,6 @@
   "peerDependencies": {
     "mini-css-extract-plugin": "^2.4.5",
     "style-loader": "^3.3.1"
-  }
+  },
+  "gitHead": "68326784ae43fb125d9aeaf3dca482d280d5220a"
 }

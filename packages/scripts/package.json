@@ -9,7 +9,7 @@
     "react",
     "@jackson"
   ],
-  "author": "jackson",
+  "author": "jacksonhuang",
   "homepage": "",
   "license": "ISC",
   "publishConfig": {
@@ -74,5 +74,6 @@
     "@types/speed-measure-webpack-plugin": "^1.3.4",
     "@types/webpack-bundle-analyzer": "^4.4.1",
     "typescript": "^4.6.2"
-  }
+  },
+  "gitHead": "68326784ae43fb125d9aeaf3dca482d280d5220a"
 }

@@ -9,7 +9,7 @@
     "react",
     "@jackson"
   ],
-  "author": "jackson",
+  "author": "jacksonhuang",
   "homepage": "",
   "license": "ISC",
   "publishConfig": {
@@ -39,5 +39,6 @@
     "@types/semver": "^7.3.9",
     "@types/validate-npm-package-name": "^3.0.3",
     "typescript": "^4.6.2"
-  }
+  },
+  "gitHead": "68326784ae43fb125d9aeaf3dca482d280d5220a"
 }
