@@ -1,6 +1,6 @@
 {
   "name": "@jackson/cra-plugin-typescript",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "typescript plugin for @jackson/cra-cli",
   "keywords": [
     "cli",
