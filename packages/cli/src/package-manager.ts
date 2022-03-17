@@ -53,13 +53,4 @@ export class PackageManager {
       this.runCommand('install');
     }
   }
-
-  git() {
-    try {
-      execSync('git init');
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
 }

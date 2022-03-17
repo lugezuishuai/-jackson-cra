@@ -11,6 +11,7 @@ import { setPkgBase, setPkgScripts } from './utils/set-pkg';
 import { setVersion } from './utils/set-version';
 import { writeFileTree } from './utils/write-file-tree';
 import { handleTemplate } from './utils/handle-template';
+import { execSync } from 'child_process';
 
 interface Plugin {
   name: string;
@@ -91,7 +92,7 @@ export async function create(pkgName: string) {
       plugins: [...devDependencies],
     };
 
-    devDependencies.push('@jacksonhuang/cra-scripts');
+    devDependencies.push('@jacksonhuang/cra-scripts', '@jacksonhuang/cra-template');
 
     const promises = [
       ...setVersion(dependencies, pkg, 'dependencies'),
@@ -110,18 +111,21 @@ export async function create(pkgName: string) {
 
     loading.succeed('🚀 Initialization successful!');
 
-    console.log();
-
-    loading.start('Download dependency and copy templates...');
-
     // 安装依赖
     pm.install();
 
     // 初始化git
-    options.git = pm.git();
+    execSync('git init');
 
     // 拷贝模板
     handleTemplate(options);
+
+    // 删除@jacksonhuang/cra-template依赖
+    if (pm.bin === 'yarn') {
+      execSync('yarn remove @jacksonhuang/cra-template');
+    } else {
+      execSync(`${pm.bin} uninstall @jacksonhuang/cra-template`);
+    }
 
     loading.succeed('🎉 Successfully created project!');
     console.log();

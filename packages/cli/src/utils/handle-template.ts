@@ -5,10 +5,36 @@ import fs from 'fs-extra';
 import path from 'path';
 import { PluginOptions } from './get-plugin-options';
 
+const gitignore = `
+.DS_Store
+node_modules/
+.npm
+.env
+*.log*
+*.pid
+*.pid.*
+*.report
+.sonarlint
+.idea/
+.eslintcache
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/extensions.json
+dist/
+coverage/
+lib-cov
+`;
+
 // src目录下复制文件
 function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }: { tsx: boolean; less: boolean }) {
   const tempSrc = path.join(templateFilePath, 'pages/index');
   const destSrc = `${destFilePath}/pages/index`;
+  const tempLessPath = path.join(templateFilePath, 'variable.less');
+  const destLessPath = `${destFilePath}/variable.less`;
+
+  if (less) {
+    fs.copySync(tempLessPath, destLessPath);
+  }
 
   const suffixs = [['.js'], ['.css']];
 
@@ -27,7 +53,7 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
   });
 }
 
-export function handleTemplate({ tsx, less, git, config = {} }: PluginOptions) {
+export function handleTemplate({ tsx, less, config = {} }: PluginOptions) {
   const cwd = process.cwd(); // 当前项目的路径
   const templatePath = path.join(
     path.dirname(require.resolve('@jacksonhuang/cra-template/package.json', { paths: [cwd] })),
@@ -54,27 +80,17 @@ export function handleTemplate({ tsx, less, git, config = {} }: PluginOptions) {
 
         break;
       }
-      case '.gitignore': {
-        if (git) {
-          fs.copySync(templateFilePath, destFilePath);
-        }
-
-        break;
-      }
       case 'jackson.config.js': {
         const content = `module.exports = ${JSON.stringify(config, null, 2)}`;
         fs.writeFileSync(destFilePath, content);
-        break;
-      }
-      case 'variable.less': {
-        if (less) {
-          fs.copySync(templateFilePath, destFilePath);
-        }
-
         break;
       }
       default:
         fs.copySync(templateFilePath, destFilePath);
     }
   });
+
+  // 写入.gitignore文件，不知道为啥fs.readdirSync读取不到.gitignore文件
+  const gitignorePath = path.join(cwd, '.gitignore');
+  fs.writeFileSync(gitignorePath, gitignore);
 }

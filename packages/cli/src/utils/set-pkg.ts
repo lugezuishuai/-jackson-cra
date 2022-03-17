@@ -25,5 +25,6 @@ export function setPkgScripts(pkg: Record<string, any>) {
   pkg.scripts = {
     dev: 'jackson-scripts dev',
     build: 'jackson-scripts build',
+    analyse: 'jackson-scripts analyse',
   };
 }
