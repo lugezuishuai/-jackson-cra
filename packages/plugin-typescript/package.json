@@ -1,0 +1,39 @@
+{
+  "name": "@jackson/cra-plugin-typescript",
+  "version": "1.0.0",
+  "description": "typescript plugin for @jackson/cra-cli",
+  "keywords": [
+    "cli",
+    "build",
+    "react",
+    "typescript",
+    "plugins"
+  ],
+  "author": "jackson",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rm -rf ./lib && tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/preset-typescript": "^7.16.0"
+  },
+  "devDependencies": {
+    "@types/webpack-chain": "^5.2.0",
+    "typescript": "^4.6.2",
+    "webpack-chain": "^6.5.1"
+  },
+  "peerDependencies": {
+    "babel-loader": "^8.2.3"
+  }
+}

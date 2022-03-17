@@ -1,0 +1,28 @@
+{
+  "name": "@jackson/cra-template",
+  "version": "1.0.0",
+  "description": "a template for @jackson/cra-cli",
+  "keywords": [
+    "template",
+    "create-react-app",
+    "cli",
+    "react",
+    "build",
+    "@jackson"
+  ],
+  "author": "jackson",
+  "homepage": "",
+  "license": "ISC",
+  "files": [
+    "template"
+  ],
+  "scripts": {
+    "build": "echo \"no need build\"",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "fs-extra": ">9"
+  }
+}

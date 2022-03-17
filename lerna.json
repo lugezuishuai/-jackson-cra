@@ -1,0 +1,35 @@
+{
+  "packages": [
+    "examples/*",
+    "packages/*"
+  ],
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "access": "public",
+      "message": "chore: publish",
+      "ignoreChanges": [
+        "test/**/*",
+        "**/__fixtures__/**",
+        "**/__tests__/**",
+        "*.spec.js",
+        "*.spec.ts",
+        "src/**/*.*"
+      ]
+    },
+    "version": {
+      "allowBranch": [
+        "master",
+        "release/*"
+      ],
+      "message": "chore: publish"
+    },
+    "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  },
+  "version": "1.0.0",
+  "npmClient": "yarn"
+}

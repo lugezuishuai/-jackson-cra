@@ -1,0 +1,13 @@
+node_modules
+dist
+es
+lib
+build
+public
+bin
+# 不校验隐藏文件
+.*
+*.d.ts
+rollup.config.js
+# 不校验template下的文件
+**/template/**
