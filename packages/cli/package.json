@@ -12,6 +12,9 @@
   "author": "jackson",
   "homepage": "",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "jackson-cli": "./bin/run.js"
   },

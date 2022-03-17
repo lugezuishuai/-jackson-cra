@@ -13,6 +13,9 @@
   "author": "jackson",
   "homepage": "",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "template"
   ],
