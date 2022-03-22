@@ -94,6 +94,10 @@ export function handleTemplate({ tsx, less }: PluginOptions) {
 
         break;
       }
+      case 'env': {
+        fs.copySync(templateFilePath, path.join(cwd, '.env'));
+        break;
+      }
       default:
         fs.copySync(templateFilePath, destFilePath);
     }

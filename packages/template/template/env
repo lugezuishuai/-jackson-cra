@@ -1,0 +1,2 @@
+SERVICE_URL = 'http://47.106.132.36:5000/'
+WATCH_FILES_REG = '^(src|node_modules)//*'
