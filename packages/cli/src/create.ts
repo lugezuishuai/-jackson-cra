@@ -11,7 +11,7 @@ import { setPkgBase, setPkgScripts } from './utils/set-pkg';
 import { setVersion } from './utils/set-version';
 import { writeFileTree } from './utils/write-file-tree';
 import { handleTemplate } from './utils/handle-template';
-import { execSync } from 'child_process';
+import execa from 'execa';
 
 interface Plugin {
   name: string;
@@ -83,16 +83,17 @@ export async function create(pkgName: string) {
     const pm = new PackageManager(pkgName);
     const pkg = setPkgBase({
       name: pkgName,
+      main: `./src/index.${options.tsx ? 'tsx' : 'js'}`,
       dependencies: {},
       devDependencies: {},
     });
-    const dependencies = ['react', 'react-dom'];
-
-    options.config = {
-      plugins: [...devDependencies],
-    };
+    const dependencies = ['react', 'react-dom', 'react-router-dom'];
 
     devDependencies.push('@jacksonhuang/cra-scripts', '@jacksonhuang/cra-template');
+
+    if (options.tsx) {
+      devDependencies.push('@types/react', '@types/react-dom', '@types/react-router-dom', 'typescript');
+    }
 
     const promises = [
       ...setVersion(dependencies, pkg, 'dependencies'),
@@ -115,16 +116,16 @@ export async function create(pkgName: string) {
     pm.install();
 
     // 初始化git
-    execSync('git init');
+    execa.commandSync('git init');
 
     // 拷贝模板
     handleTemplate(options);
 
     // 删除@jacksonhuang/cra-template依赖
     if (pm.bin === 'yarn') {
-      execSync('yarn remove @jacksonhuang/cra-template');
+      execa.commandSync('yarn remove @jacksonhuang/cra-template');
     } else {
-      execSync(`${pm.bin} uninstall @jacksonhuang/cra-template`);
+      execa.commandSync(`${pm.bin} uninstall @jacksonhuang/cra-template`);
     }
 
     loading.succeed('🎉 Successfully created project!');

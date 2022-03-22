@@ -2,18 +2,18 @@
  * 设置package.json基础选项
  */
 export function setPkgBase(options: Record<string, any>) {
-  const { name, ...rest } = options;
+  const { name, main, ...rest } = options;
 
   return {
     name,
     version: '1.0.0',
-    private: true,
     description: '',
-    main: 'index.js',
+    main,
     scripts: {},
     keywords: [],
     author: '',
     license: 'ISC',
+    browserslist: ['> 1%', 'last 2 versions', 'not ie <= 8', 'iOS 7', 'last 3 iOS versions'],
     ...rest,
   };
 }

@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import execa from 'execa';
 
 const _env = {
   _hasYarn: null,
@@ -13,7 +13,7 @@ function checkEnv(name: string) {
   }
 
   try {
-    execSync(`${name} --version`, { stdio: 'ignore' });
+    execa.commandSync(`${name} --version`, { stdio: 'ignore' });
 
     return (_env[envKey] = true);
   } catch (e) {

@@ -2,8 +2,14 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import Config from 'webpack-chain';
 import path from 'path';
 
-export default function (config: Config, isDev: boolean) {
-  const miniCssLoader = !isDev ? MiniCssExtractPlugin.loader : 'style-loader';
+enum ScriptMode {
+  prod = 'prod',
+  dev = 'dev',
+  analyse = 'analyse',
+}
+
+export default function (config: Config, mode: ScriptMode) {
+  const miniCssLoader = mode === ScriptMode.dev ? 'style-loader' : MiniCssExtractPlugin.loader;
   const _config = config.module.rule('less').test(/\.less$/);
   const use = [miniCssLoader, 'css-loader', 'less-loader', 'style-resources-loader'];
   use.forEach((item) => {

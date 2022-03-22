@@ -1,46 +1,28 @@
 {
-  "name": "@jacksonhuang/cra-demo",
-  "version": "1.0.6-alpha.0",
-  "description": "demo for @jacksonhuang/cra-cli",
-  "keywords": [
-    "create-react-app",
-    "cli",
-    "demo",
-    "@jacksonhuang"
-  ],
-  "author": "jacksonhuang",
-  "homepage": "https://github.com/lugezuishuai/cra#readme",
-  "license": "ISC",
-  "publishConfig": {
-    "access": "public"
-  },
-  "main": "lib/demo.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lugezuishuai/cra.git"
-  },
+  "name": "my-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "dev": "jackson-scripts dev",
-    "build": "echo \"no need build\"",
+    "build": "jackson-scripts build",
     "analyse": "jackson-scripts analyse"
   },
-  "bugs": {
-    "url": "https://github.com/lugezuishuai/cra/issues"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2"
   },
   "devDependencies": {
     "@jacksonhuang/cra-plugin-less": "^1.0.6-alpha.0",
     "@jacksonhuang/cra-plugin-typescript": "^1.0.6-alpha.0",
-    "@jacksonhuang/cra-scripts": "^1.0.6-alpha.0"
+    "@jacksonhuang/cra-scripts": "^1.0.6-alpha.0",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
+    "@types/react-router-dom": "^5.3.3"
   }
 }

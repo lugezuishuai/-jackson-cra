@@ -1,7 +1,7 @@
 import semver from 'semver';
 import inquirer from 'inquirer';
 import pkg from '../../package.json';
-import { execSync } from 'child_process';
+import execa from 'execa';
 import { getLastVersion, MANAGER } from './get-last-version';
 
 export async function beforeCreate() {
@@ -20,6 +20,6 @@ export async function beforeCreate() {
       },
     ]);
 
-    update && execSync(`${MANAGER} update @jacksonhuang/cra-cli -g`);
+    update && execa.commandSync(`${MANAGER} update @jacksonhuang/cra-cli -g`);
   }
 }

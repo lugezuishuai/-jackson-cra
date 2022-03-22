@@ -1,7 +1,6 @@
 export interface PluginOptions {
   tsx: boolean;
   less: boolean;
-  config?: Record<string, any>;
 }
 
 export function getPluginOptions(_plugins: string[]) {

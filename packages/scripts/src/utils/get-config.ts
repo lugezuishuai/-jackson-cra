@@ -4,9 +4,14 @@ import baseConfig from '../config/webpack.common';
 import devConfig from '../config/webpack.dev';
 import prodConfig from '../config/webpack.prod';
 import analyseConfig from '../config/webpack.analyse';
+import { Configuration } from 'webpack';
+import { formatConfig } from './format-config';
+
+type ConfigType = Configuration | ((config: Config, env: ScriptMode) => void); // 配置类型
 
 const config = new Config();
 const extraConfig = require(`${process.cwd()}/jackson.config.js`);
+const pkg = require(`${process.cwd()}/package.json`);
 
 export enum ScriptMode {
   prod = 'prod',
@@ -14,33 +19,44 @@ export enum ScriptMode {
   analyse = 'analyse',
 }
 
-interface ExtraConfig extends Record<string, any> {
-  plugins?: string[];
+function executePlugin(plugin: ConfigType, mode: ScriptMode) {
+  if (typeof plugin === 'function') {
+    plugin(config, mode);
+  } else {
+    config.merge(plugin);
+  }
 }
 
-function handleExtraConfig({ plugins }: ExtraConfig, mode: ScriptMode) {
-  if (plugins && plugins.length > 0) {
-    plugins.forEach((plugin) => {
-      const pluginFn = require(plugin);
+function handleExtraConfig(_config: ConfigType, mode: ScriptMode) {
+  const plugins: ConfigType[] = [];
+  if (pkg.devDependencies['@jacksonhuang/cra-plugin-less']) {
+    plugins.push(require('@jacksonhuang/cra-plugin-less').default);
+  }
 
-      if (plugin === '@jacksonhuang/cra-plugin-less') {
-        pluginFn(config, mode === ScriptMode.dev);
-      } else {
-        pluginFn(config);
-      }
-    });
+  if (pkg.devDependencies['@jacksonhuang/cra-plugin-typescript']) {
+    plugins.push(require('@jacksonhuang/cra-plugin-typescript').default);
+  }
+
+  plugins.forEach((plugin) => executePlugin(plugin, mode));
+
+  if (typeof _config === 'function') {
+    _config(config, mode);
+  } else {
+    config.merge(_config);
   }
 }
 
 export function getConfig(mode: ScriptMode) {
   config.clear();
 
-  const webpackConfig = merge<Record<string, any>>(
+  const webpackConfig = merge(
     baseConfig,
     mode === ScriptMode.dev ? devConfig : mode === ScriptMode.prod ? prodConfig : analyseConfig
   );
-  config.merge(webpackConfig);
+  formatConfig(webpackConfig, config, mode);
   handleExtraConfig(extraConfig, mode);
 
-  return config.toConfig();
+  return merge(config.toConfig(), {
+    plugins: webpackConfig.plugins,
+  });
 }

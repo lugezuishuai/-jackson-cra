@@ -1,11 +1,3 @@
-# `demo`
+# @jacksonhuang/cli
 
-> TODO: description
-
-## Usage
-
-```
-const demo = require('demo');
-
-// TODO: DEMONSTRATE API
-```
+脚手架模板

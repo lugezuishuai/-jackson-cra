@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import { create } from './create';
 import { update } from './update';
 
-program.version(`jackson-cli ${pkg.version}`, '-v -version').usage('');
+program.version(`jackson-cli ${pkg.version}`, '-v -version').usage('<command> [options]');
 
 program.command('create <app-name>').description('create project').action(create);
 

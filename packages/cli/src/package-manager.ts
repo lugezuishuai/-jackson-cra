@@ -2,7 +2,7 @@
  * Download Management
  */
 import path from 'path';
-import { execSync } from 'child_process';
+import execa from 'execa';
 import { hasYarn, hasCnpm } from './utils/env';
 
 const PM_CONFIG = {
@@ -43,7 +43,7 @@ export class PackageManager {
 
   runCommand(command: string, args: string[] = []) {
     const _commands = [this.bin, ...PM_CONFIG[this.bin][command], ...args];
-    execSync(_commands.join(' '), { stdio: [0, 1, 2] });
+    execa.commandSync(_commands.join(' '), { stdio: [0, 1, 2] });
   }
 
   install() {

@@ -11,6 +11,7 @@ export default {
     chunkFilename: '[name].[hash:8].js',
     path: resolve('dist'),
     publicPath: '/',
+    assetModuleFilename: '[name].[hash:8][ext][query]',
   },
   plugins: [new ReactRefreshWebpackPlugin()],
   devtool: 'source-map',

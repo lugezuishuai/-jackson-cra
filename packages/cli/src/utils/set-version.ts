@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import execa from 'execa';
 import { hasCnpm } from './env';
 
 export function setVersion(list: string[], obj: Record<string, any>, key: string): Promise<any>[] {
@@ -7,14 +7,19 @@ export function setVersion(list: string[], obj: Record<string, any>, key: string
 
   list.forEach((item) => {
     const promise = new Promise((resolve, reject) => {
-      exec(`${manager} view ${item} version`, (err, stdout) => {
-        if (err) {
-          reject(err);
-        } else {
-          obj[key][item] = `^${stdout.slice(0, stdout.length - 1)}`;
-          resolve(0);
-        }
-      });
+      execa
+        .command(`${manager} view ${item} version`)
+        .then(({ stderr, stdout }) => {
+          if (stderr) {
+            reject(stderr);
+          } else {
+            obj[key][item] = `^${stdout}`;
+            resolve(0);
+          }
+        })
+        .catch((e) => {
+          reject(e);
+        });
     });
 
     promiseList.push(promise);

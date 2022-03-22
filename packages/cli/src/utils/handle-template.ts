@@ -43,7 +43,7 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
 
   suffixs.forEach((suffix, index) => {
     if (index === 0 && less) {
-      const content = fs.readFileSync(`${tempSrc}${suffix[0]}`).toString().replace(/\.css/g, 'less');
+      const content = fs.readFileSync(`${tempSrc}${suffix[0]}`).toString().replace(/\.css/g, '.less');
 
       fs.writeFileSync(`${destSrc}${suffix[1]}`, content);
       return;
@@ -53,7 +53,7 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
   });
 }
 
-export function handleTemplate({ tsx, less, config = {} }: PluginOptions) {
+export function handleTemplate({ tsx, less }: PluginOptions) {
   const cwd = process.cwd(); // 当前项目的路径
   const templatePath = path.join(
     path.dirname(require.resolve('@jacksonhuang/cra-template/package.json', { paths: [cwd] })),
@@ -92,11 +92,6 @@ export function handleTemplate({ tsx, less, config = {} }: PluginOptions) {
           fs.copySync(templateFilePath, path.join(cwd, '.eslintrc.js'));
         }
 
-        break;
-      }
-      case 'jackson.config.js': {
-        const content = `module.exports = ${JSON.stringify(config, null, 2)}`;
-        fs.writeFileSync(destFilePath, content);
         break;
       }
       default:
