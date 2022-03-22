@@ -1,6 +1,6 @@
 {
   "name": "@jacksonhuang/cra-cli",
-  "version": "1.0.6-alpha.0",
+  "version": "1.0.7-alpha.0",
   "description": "user interaction part in cli",
   "keywords": [
     "create-react-app",
@@ -41,8 +41,8 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^9.0.0",
-    "fs-extra": "^10.0.1",
     "execa": "^5.1.1",
+    "fs-extra": "^10.0.1",
     "inquirer": "^8.2.1",
     "ora": "^5.4.1",
     "semver": "^7.3.5",
