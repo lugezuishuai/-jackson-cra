@@ -1,6 +1,6 @@
 {
   "name": "@jacksonhuang/cra-cli",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "user interaction part in cli",
   "keywords": [
     "create-react-app",
