@@ -33,6 +33,7 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
   const destLessPath = `${destFilePath}/variable.less`;
   const tempPagesPath = path.join(templateFilePath, 'pages/app/index'); // pages/app/index
   const destPagesPath = `${destFilePath}/pages/app/index`;
+  const destPages = `${destFilePath}/pages/app`;
 
   if (less) {
     fs.copySync(tempLessPath, destLessPath);
@@ -54,12 +55,8 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
         const indexContent = fs.readFileSync(tempIndexFile).toString().replace(/\.css/g, '.less');
         const pagesContent = fs.readFileSync(tempPagesFile).toString().replace(/\.css/g, '.less');
 
-        if (!fs.existsSync(destIndexFile)) {
-          fs.mkdirSync(destIndexFile);
-        }
-
-        if (!fs.existsSync(destPagesFile)) {
-          fs.mkdirSync(destPagesFile);
+        if (!fs.statSync(destPages).isDirectory()) {
+          fs.mkdirpSync(destPages);
         }
 
         fs.writeFileSync(destIndexFile, indexContent);
@@ -125,9 +122,5 @@ export function handleTemplate({ tsx, less }: PluginOptions) {
   });
 
   // 写入.gitignore文件
-  const gitignoreFile = path.join(cwd, '.gitignore');
-  if (!fs.existsSync(gitignoreFile)) {
-    fs.mkdirSync(gitignoreFile);
-  }
-  fs.writeFileSync(gitignoreFile, gitignore);
+  fs.writeFileSync(path.join(cwd, '.gitignore'), gitignore);
 }
