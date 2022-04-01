@@ -27,10 +27,12 @@ lib-cov
 
 // src目录下复制文件
 function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }: { tsx: boolean; less: boolean }) {
-  const tempSrc = path.join(templateFilePath, 'pages/index');
-  const destSrc = `${destFilePath}/pages/index`;
-  const tempLessPath = path.join(templateFilePath, 'variable.less');
+  const tempIndexPath = path.join(templateFilePath, 'index'); // index
+  const destIndexPath = `${destFilePath}/index`;
+  const tempLessPath = path.join(templateFilePath, 'variable.less'); // variable.less
   const destLessPath = `${destFilePath}/variable.less`;
+  const tempPagesPath = path.join(templateFilePath, 'pages/app/index'); // pages/app/index
+  const destPagesPath = `${destFilePath}/pages/app/index`;
 
   if (less) {
     fs.copySync(tempLessPath, destLessPath);
@@ -43,13 +45,16 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
 
   suffixs.forEach((suffix, index) => {
     if (index === 0 && less) {
-      const content = fs.readFileSync(`${tempSrc}${suffix[0]}`).toString().replace(/\.css/g, '.less');
+      const indexContent = fs.readFileSync(`${tempIndexPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
+      const pagesContent = fs.readFileSync(`${tempPagesPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
 
-      fs.writeFileSync(`${destSrc}${suffix[1]}`, content);
+      fs.writeFileSync(`${destIndexPath}${suffix[1]}`, indexContent);
+      fs.writeFileSync(`${destPagesPath}${suffix[1]}`, pagesContent);
       return;
     }
 
-    fs.copySync(`${tempSrc}${suffix[0]}`, `${destSrc}${suffix[1]}`);
+    fs.copySync(`${tempIndexPath}${suffix[0]}`, `${destIndexPath}${suffix[1]}`);
+    fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
   });
 }
 
