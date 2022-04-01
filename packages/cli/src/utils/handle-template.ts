@@ -53,7 +53,6 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
       return;
     }
 
-    fs.copySync(`${tempIndexPath}${suffix[0]}`, `${destIndexPath}${suffix[1]}`);
     fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
   });
 }
