@@ -33,16 +33,15 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
   const destLessPath = `${destFilePath}/variable.less`;
   const tempPagesPath = path.join(templateFilePath, 'pages/app/index'); // pages/app/index
   const destPagesPath = `${destFilePath}/pages/app/index`;
-  const destPages = `${destFilePath}/pages/app`;
 
   if (less) {
     fs.copySync(tempLessPath, destLessPath);
   }
 
-  const suffixs = [['.js'], ['.css']];
+  const suffixs = [['.css'], ['.js']];
 
-  suffixs[0][1] = tsx ? '.tsx' : '.js';
-  suffixs[1][1] = less ? '.less' : '.css';
+  suffixs[0][1] = less ? '.less' : '.css';
+  suffixs[1][1] = tsx ? '.tsx' : '.js';
 
   suffixs.forEach(async (suffix, index) => {
     const tempIndexFile = `${tempIndexPath}${suffix[0]}`;
@@ -50,14 +49,10 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
     const destIndexFile = `${destIndexPath}${suffix[1]}`;
     const destPagesFile = `${destPagesPath}${suffix[1]}`;
 
-    if (index === 0) {
+    if (index === 1) {
       if (less) {
         const indexContent = fs.readFileSync(tempIndexFile).toString().replace(/\.css/g, '.less');
         const pagesContent = fs.readFileSync(tempPagesFile).toString().replace(/\.css/g, '.less');
-
-        if (!fs.statSync(destPages).isDirectory()) {
-          fs.mkdirpSync(destPages);
-        }
 
         fs.writeFileSync(destIndexFile, indexContent);
         fs.writeFileSync(destPagesFile, pagesContent);
