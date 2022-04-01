@@ -44,16 +44,20 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
   suffixs[1][1] = less ? '.less' : '.css';
 
   suffixs.forEach((suffix, index) => {
-    if (index === 0 && less) {
-      const indexContent = fs.readFileSync(`${tempIndexPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
-      const pagesContent = fs.readFileSync(`${tempPagesPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
+    if (index === 0) {
+      if (less) {
+        const indexContent = fs.readFileSync(`${tempIndexPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
+        const pagesContent = fs.readFileSync(`${tempPagesPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
 
-      fs.writeFileSync(`${destIndexPath}${suffix[1]}`, indexContent);
-      fs.writeFileSync(`${destPagesPath}${suffix[1]}`, pagesContent);
-      return;
+        fs.writeFileSync(`${destIndexPath}${suffix[1]}`, indexContent);
+        fs.writeFileSync(`${destPagesPath}${suffix[1]}`, pagesContent);
+      } else {
+        fs.copySync(`${tempIndexPath}${suffix[0]}`, `${destIndexPath}${suffix[1]}`);
+        fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
+      }
+    } else {
+      fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
     }
-
-    fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
   });
 }
 
