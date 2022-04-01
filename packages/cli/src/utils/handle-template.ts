@@ -43,20 +43,33 @@ function copyFiles(destFilePath: string, templateFilePath: string, { tsx, less }
   suffixs[0][1] = tsx ? '.tsx' : '.js';
   suffixs[1][1] = less ? '.less' : '.css';
 
-  suffixs.forEach((suffix, index) => {
+  suffixs.forEach(async (suffix, index) => {
+    const tempIndexFile = `${tempIndexPath}${suffix[0]}`;
+    const tempPagesFile = `${tempPagesPath}${suffix[0]}`;
+    const destIndexFile = `${destIndexPath}${suffix[1]}`;
+    const destPagesFile = `${destPagesPath}${suffix[1]}`;
+
     if (index === 0) {
       if (less) {
-        const indexContent = fs.readFileSync(`${tempIndexPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
-        const pagesContent = fs.readFileSync(`${tempPagesPath}${suffix[0]}`).toString().replace(/\.css/g, '.less');
+        const indexContent = fs.readFileSync(tempIndexFile).toString().replace(/\.css/g, '.less');
+        const pagesContent = fs.readFileSync(tempPagesFile).toString().replace(/\.css/g, '.less');
 
-        fs.writeFileSync(`${destIndexPath}${suffix[1]}`, indexContent);
-        fs.writeFileSync(`${destPagesPath}${suffix[1]}`, pagesContent);
+        if (!fs.existsSync(destIndexFile)) {
+          fs.mkdirSync(destIndexFile);
+        }
+
+        if (!fs.existsSync(destPagesFile)) {
+          fs.mkdirSync(destPagesFile);
+        }
+
+        fs.writeFileSync(destIndexFile, indexContent);
+        fs.writeFileSync(destPagesFile, pagesContent);
       } else {
-        fs.copySync(`${tempIndexPath}${suffix[0]}`, `${destIndexPath}${suffix[1]}`);
-        fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
+        fs.copySync(tempIndexFile, destIndexFile);
+        fs.copySync(tempPagesFile, destPagesFile);
       }
     } else {
-      fs.copySync(`${tempPagesPath}${suffix[0]}`, `${destPagesPath}${suffix[1]}`);
+      fs.copySync(tempPagesFile, destPagesFile);
     }
   });
 }
@@ -112,5 +125,9 @@ export function handleTemplate({ tsx, less }: PluginOptions) {
   });
 
   // 写入.gitignore文件
-  fs.writeFileSync(path.join(cwd, '.gitignore'), gitignore);
+  const gitignoreFile = path.join(cwd, '.gitignore');
+  if (!fs.existsSync(gitignoreFile)) {
+    fs.mkdirSync(gitignoreFile);
+  }
+  fs.writeFileSync(gitignoreFile, gitignore);
 }
